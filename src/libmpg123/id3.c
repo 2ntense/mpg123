@@ -121,6 +121,8 @@ static void null_id3_links(mpg123_handle *fr)
 	fr->id3v2.title  = NULL;
 	fr->id3v2.artist = NULL;
 	fr->id3v2.album  = NULL;
+	fr->id3v2.album_artist  = NULL;
+	fr->id3v2.track_no  = NULL;
 	fr->id3v2.year   = NULL;
 	fr->id3v2.genre  = NULL;
 	fr->id3v2.comment = NULL;
@@ -310,6 +312,8 @@ void id3_link(mpg123_handle *fr)
 		else if(!strncmp("TPE1", entry->id, 4)) v2->artist = &entry->text;
 		else if(!strncmp("TYER", entry->id, 4)) v2->year   = &entry->text;
 		else if(!strncmp("TCON", entry->id, 4)) v2->genre  = &entry->text;
+		else if(!strncmp("TPE2", entry->id, 4)) v2->album_artist  = &entry->text;
+		else if(!strncmp("TRCK", entry->id, 4)) v2->track_no  = &entry->text;
 	}
 	for(i=0; i<v2->comments; ++i)
 	{
